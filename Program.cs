@@ -4,40 +4,35 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApplication1
+namespace ExceptionHandling
 {
-    class Student
+    class DivNumbers
     {
-        public string FirstName, LastName;
-        public static int num;
-        public Student()
+        int result;
+        DivNumbers()
         {
-            num++;
+            result = 0;
         }
-        public static int GetNum()
+        public void division(int num1, int num2)
         {
-            return num;
+            try
+            {
+                result = num1 / num2;
+            }
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine("Exception caught: {0}", e);
+            }
+            finally
+            {
+                Console.WriteLine("Result: {0}", result);
+            }
         }
-        public void PrintFullName(string FirstName , string LastName)
-        {
-            string FullName;
-            FullName = FirstName + " " + LastName;
-            Console.WriteLine("FullName: {0}", FullName);
-        }
-    }
-    class Program
-    {
         static void Main(string[] args)
         {
-            Student s = new Student();
-            Student s1 = new Student();
-            Student s2 = new Student();
-            s.PrintFullName("Rajesh", "Bansal");
-            s1.PrintFullName("r", "b");
-            s2.PrintFullName("b", "r");
-            Console.WriteLine("Total No Of Students: {0}", Student.GetNum());
-            Console.ReadLine();
-
+            DivNumbers d = new DivNumbers();
+            d.division(25, 0);
+            Console.ReadKey();
         }
     }
 }
